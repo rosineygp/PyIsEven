@@ -19,8 +19,8 @@ class TestIsEven(unittest.TestCase):
 
     def test_negative(self):
         try:
-            negative = is_even.is_even(-10)
-        except Exception as err:
+            is_even.is_even(-10)
+        except Exception:
             pass
 
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='pyiseven',
+    name='PyIsEven',
     version='0.3.1',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

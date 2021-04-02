@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  lint_commit:
+  test:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -23,6 +23,6 @@ jobs:
       run: |
         flake8 ./is_even/ --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 ./is_even/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
+    - name: Unit Test
       run: |
         python test_is_even.py

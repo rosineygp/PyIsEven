@@ -8,7 +8,11 @@ from retry import retry
 def is_even(number):
     n = int(number)
     r = requests.get(f"https://api.isevenapi.xyz/api/iseven/{n}/")
-    return r.json()["iseven"]
+
+    if r.status_code == requests.codes.ok:
+        return r.json()["iseven"]
+    else:
+        raise Exception(r.json()["error"])
 
 
 if __name__ == '__main__':

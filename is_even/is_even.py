@@ -1,8 +1,10 @@
 import requests
 import functools
+from retry import retry
 
 
 @functools.lru_cache(maxsize=None)
+@retry(ConnectionError, tries=3, delay=2)
 def is_even(number):
     n = int(number)
     r = requests.get(f"https://api.isevenapi.xyz/api/iseven/{n}/")

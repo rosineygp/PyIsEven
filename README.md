@@ -4,6 +4,11 @@ Check if interger is even using `isevenapi`.
 
 https://isevenapi.xyz/
 
+Main features:
+
+- cache memoization
+- api retry handler
+
 ## Install
 
 ```bash

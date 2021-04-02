@@ -1,6 +1,6 @@
 # Is Even
 
-check if interger is even using even api
+Check if interger is even using `isevenapi`.
 
 https://isevenapi.xyz/
 

@@ -3,6 +3,11 @@ from setuptools import setup
 setup(
     name='PyIsEven',
     version='0.3.1',
+    license='MIT',
+    description='Check is a integer is even',
+    author='Rosiney Gomes Pereira',
+    url='https://github.com/rosineygp/PyIsEven',
+    keywords=['even'],
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=[

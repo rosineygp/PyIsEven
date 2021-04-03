@@ -8,6 +8,7 @@ Main features:
 
 - cache memoization
 - api retry handler
+- hide ads
 
 ## Install
 

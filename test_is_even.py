@@ -9,9 +9,16 @@ class TestIsEven(unittest.TestCase):
         assert (even is True)
 
     def test_odd(self):
-        odd = is_even.is_even(3)
+        odd = is_even.is_odd(3)
+        assert(odd is True)
 
-        assert(odd is False)
+    def test_not_even(self):
+        even = is_even.is_even(3)
+        assert (even is False)
+
+    def test_not_odd(self):
+        even = is_even.is_odd(2)
+        assert (even is False)
 
     def test_cache(self):
         assert (is_even.is_even(2) is True)

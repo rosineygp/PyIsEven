@@ -18,6 +18,7 @@ def is_even(number):
 def is_odd(number):
     return not is_even(number)
 
+
 if __name__ == '__main__':
 
     for i in range(10):

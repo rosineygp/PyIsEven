@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='PyIsEven',
     packages=['is_even'],
-    version='0.4.1',
+    version='0.4.2',
     license='MIT',
     description='Check is a integer is even',
     author='Rosiney Gomes Pereira',

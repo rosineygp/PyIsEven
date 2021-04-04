@@ -1,9 +1,9 @@
 import requests
-import functools
+from functools import lru_cache
 from retry import retry
 
 
-@functools.lru_cache(maxsize=None)
+@lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
 def is_even(number):
     n = int(number)

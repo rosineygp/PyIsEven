@@ -4,7 +4,7 @@ from is_even import is_even
 
 
 class TestIsEven(unittest.TestCase):
-    def test_even(seff):
+    def test_even(self):
         even = is_even.is_even(2)
         assert (even is True)
 

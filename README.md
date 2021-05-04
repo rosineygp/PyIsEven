@@ -1,5 +1,7 @@
 # Is Even
 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/PyIsEven)
+
 Check if interger is even using `isevenapi`.
 
 https://isevenapi.xyz/

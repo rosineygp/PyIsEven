@@ -1,9 +1,13 @@
+import os
 from setuptools import setup
+
+_github_ref = os.getenv("GITHUB_REF", "0.0.0").split("/")[-1]
+_version = _github_ref.replace("v", "")
 
 setup(
     name='PyIsEven',
     packages=['is_even'],
-    version='0.4.2',
+    version=_version,
     license='MIT',
     description='Check is a integer is even',
     author='Rosiney Gomes Pereira',

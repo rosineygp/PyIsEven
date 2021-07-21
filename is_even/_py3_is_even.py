@@ -18,10 +18,8 @@ def is_even(number: Union[str, int]) -> TypeGuard[int]:
     json: Union[Success, Error] = r.json()
 
     if r.status_code == requests.codes.ok:
-        assert isinstance(json, Success)
         return json["iseven"]
     else:
-        assert isinstance(json, Error)
         raise Exception(json["error"])
 
 

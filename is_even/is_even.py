@@ -12,4 +12,4 @@ elif version_info >= (3, 8):
 elif version_info >= (3, 0):
     from ._py3_is_even import is_even, is_odd
 else:
-    from ._py3_is_even import is_even, is_odd
+    from ._py2_is_even import is_even, is_odd

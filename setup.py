@@ -18,5 +18,6 @@ setup(
     install_requires=[
         'requests>=2.14.0',
         'retry>=0.9.2',
+        'typing-extensions>=3.10.0.0'
     ],
 )

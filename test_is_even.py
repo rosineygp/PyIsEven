@@ -6,29 +6,27 @@ from is_even import is_even
 class TestIsEven(unittest.TestCase):
     def test_even(self):
         even = is_even.is_even(2)
-        assert (even is True)
+        self.assertTrue(even)
 
     def test_odd(self):
         odd = is_even.is_odd(3)
-        assert(odd is True)
+        self.assertTrue(odd)
 
     def test_not_even(self):
         even = is_even.is_even(3)
-        assert (even is False)
+        self.assertFalse(even)
 
     def test_not_odd(self):
         even = is_even.is_odd(2)
-        assert (even is False)
+        self.assertFalse(even)
 
     def test_cache(self):
-        assert (is_even.is_even(2) is True)
-        assert (is_even.is_even(3) is False)
+        self.assertTrue(is_even.is_even(2))
+        self.assertFalse(is_even.is_even(3))
 
     def test_negative(self):
-        try:
+        with self.assertRaises(Exception):
             is_even.is_even(-10)
-        except Exception:
-            pass
 
 
 if __name__ == "__main__":

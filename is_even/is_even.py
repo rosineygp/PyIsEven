@@ -1,8 +1,8 @@
 from sys import version_info
 
 __all__ = (
-    'is_even',
-    'is_odd',
+    "is_even",
+    "is_odd",
 )
 
 if version_info >= (3, 10):

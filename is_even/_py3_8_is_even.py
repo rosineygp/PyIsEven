@@ -9,6 +9,7 @@ from ._typings import Success, Error
 if TYPE_CHECKING:
     from typing_extensions import TypeGuard
 
+
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
 def is_even(number: Union[str, int]) -> TypeGuard[int]:

@@ -4,6 +4,7 @@ from retry import retry
 from typing_extensions import TypeGuard
 from ._typings import Success, Error
 
+
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
 def is_even(number: str | int) -> TypeGuard[int]:

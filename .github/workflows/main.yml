@@ -22,6 +22,9 @@ jobs:
     - name: flake8
       run: |
         flake8 .
+    - name: black
+      run: |
+        black --check .
   e2e:
     runs-on: ubuntu-18.04
     needs:

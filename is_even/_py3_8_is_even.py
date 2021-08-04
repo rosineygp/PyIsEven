@@ -5,9 +5,16 @@ from functools import lru_cache
 from retry import retry
 from typing import TYPE_CHECKING, Union
 from ._typings import Success, Error
+from requests.exceptions import RequestException, ConnectTimeout
 
 if TYPE_CHECKING:
     from typing_extensions import TypeGuard
+
+
+class ISEVEN_APIresponse(object):
+    def __init__(self, is_even, ad):
+        self.is_even = is_even
+        self.ad = ad
 
 
 @lru_cache(maxsize=None)
@@ -22,16 +29,16 @@ def is_even(number: Union[str, int]) -> TypeGuard[int]:
 
         json: Union[Success, Error] = r.json()
 
-        if r.status_code == requests.codes.ok:
-            return json["iseven"]
-        else:
+        if "error" in json:
             raise Exception(json["error"])
-    except Exception:
-        return list(_is_even(n))[-1]
+        else:
+            return ISEVEN_APIresponse(json["iseven"], json["ad"])
+    except (RequestException, ConnectTimeout):
+        return ISEVEN_APIresponse(_is_even(n), "Python Software Foundation rocks!")
 
 
 def is_odd(number: Union[str, int]) -> TypeGuard[int]:
-    return not is_even(number)
+    return not is_even(number).is_even
 
 
 def _is_even(n: int):

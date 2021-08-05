@@ -4,17 +4,11 @@ import requests
 from functools import lru_cache
 from retry import retry
 from typing import TYPE_CHECKING, Union
-from ._typings import Success, Error
+from ._typings import Success, Error, ISEVEN_APIresponse
 from requests.exceptions import RequestException, ConnectTimeout
 
 if TYPE_CHECKING:
     from typing_extensions import TypeGuard
-
-
-class ISEVEN_APIresponse(object):
-    def __init__(self, is_even, ad):
-        self.is_even = is_even
-        self.ad = ad
 
 
 @lru_cache(maxsize=None)
@@ -38,7 +32,7 @@ def is_even(number: Union[str, int]) -> TypeGuard[int]:
 
 
 def is_odd(number: Union[str, int]) -> TypeGuard[int]:
-    return not is_even(number).is_even
+    return not is_even(number)
 
 
 def _is_even(n: int):

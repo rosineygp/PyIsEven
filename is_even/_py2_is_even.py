@@ -3,10 +3,10 @@ from requests.exceptions import RequestException, ConnectTimeout
 
 
 class ISEVEN_APIresponse(int):
-    def __new__(self, value, ad):
-        self.ad = ad
-        self.value = value
-        return int.__new__(self, bool(value))
+    def __new__(cls, value, ad):
+        cls.ad = ad
+        cls.value = value
+        return int.__new__(cls, bool(value))
 
     def __repr__(self):
         return str(bool(self.value))

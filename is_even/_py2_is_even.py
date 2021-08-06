@@ -1,6 +1,15 @@
 import requests
 from requests.exceptions import RequestException, ConnectTimeout
-from ._typings import ISEVEN_APIresponse
+
+
+class ISEVEN_APIresponse(int):
+    def __new__(self, value, ad):
+        self.ad = ad
+        self.value = value
+        return int.__new__(self, bool(value))
+
+    def __repr__(self):
+        return str(bool(self.value))
 
 
 def is_even(number):

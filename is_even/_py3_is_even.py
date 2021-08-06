@@ -2,8 +2,8 @@ import requests
 from functools import lru_cache
 from retry import retry
 from typing import Union
-from ._typings import ISEVEN_APIresponse
 from requests.exceptions import RequestException, ConnectTimeout
+from ._py3_api_response import ISEVEN_APIresponse
 
 
 @lru_cache(maxsize=None)

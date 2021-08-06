@@ -2,8 +2,10 @@ import requests
 from functools import lru_cache
 from retry import retry
 from typing_extensions import TypeGuard
-from ._typings import Success, Error, ISEVEN_APIresponse
 from requests.exceptions import RequestException, ConnectTimeout
+
+from ._typings import Success, Error
+from ._py3_api_response import ISEVEN_APIresponse
 
 
 @lru_cache(maxsize=None)

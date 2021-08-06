@@ -26,9 +26,12 @@ from is_even import is_even as ie
 ie.is_even(10)
 > True
 
-# Random ad
-ie.is_even(10).ad
+# Get AD
+v = ie.is_even(10)
+
+v.ad
 > "HONDA CIVIC '96, AM/FM/CD, low miles, Good condition. Speaks Spanish $3500 339-555-6289"
+
 ie.is_even(10).ad
 > "CHINA CABINET, buffet, hutch solid pine, 6.5 tall x 4.5 wide, lighted windows. few cat scratches but cat has died. $700. Call 435-555-6421"
 ```

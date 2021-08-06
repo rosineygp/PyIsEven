@@ -2,6 +2,8 @@ import requests
 from functools import lru_cache
 from retry import retry
 from typing import Union
+from requests.exceptions import RequestException, ConnectTimeout
+from ._py3_api_response import ISEVEN_APIresponse
 
 
 @lru_cache(maxsize=None)
@@ -12,12 +14,12 @@ def is_even(number: Union[str, int]) -> bool:
     try:
         r = requests.get(f"https://api.isevenapi.xyz/api/iseven/{n}/")
 
-        if r.status_code == requests.codes.ok:
-            return r.json()["iseven"]
-        else:
+        if "error" in r.json():
             raise Exception(r.json()["error"])
-    except Exception:
-        return list(_is_even(n))[-1]
+        else:
+            return ISEVEN_APIresponse(r.json()["iseven"], r.json()["ad"])
+    except (RequestException, ConnectTimeout):
+        return ISEVEN_APIresponse(_is_even(n), "Python Software foundation rocks!")
 
 
 def is_odd(number: Union[str, int]) -> bool:

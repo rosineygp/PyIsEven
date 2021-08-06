@@ -1,4 +1,15 @@
 import requests
+from requests.exceptions import RequestException, ConnectTimeout
+
+
+class ISEVEN_APIresponse(int):
+    def __new__(self, value, ad):
+        self.ad = ad
+        self.value = value
+        return int.__new__(self, bool(value))
+
+    def __repr__(self):
+        return str(bool(self.value))
 
 
 def is_even(number):
@@ -10,12 +21,12 @@ def is_even(number):
     try:
         r = requests.get("https://api.isevenapi.xyz/api/iseven/" + str(n) + "/")
 
-        if r.ok:
-            return r.json()["iseven"]
-        else:
+        if "error" in r.json():
             raise Exception(r.json()["error"])
-    except Exception:
-        return _is_even(n)
+        else:
+            return ISEVEN_APIresponse(r.json()["iseven"], r.json()["ad"])
+    except (RequestException, ConnectTimeout):
+        return ISEVEN_APIresponse(_is_even(n), "Python Software Foundation rocks!")
 
 
 def is_odd(number):

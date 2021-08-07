@@ -2,7 +2,7 @@ import requests
 from requests.exceptions import RequestException, ConnectTimeout
 
 
-class ISEVEN_APIresponse(int):
+class IsEven(int):
     def __new__(cls, value, ad):
         cls.ad = ad
         cls.value = value
@@ -24,9 +24,9 @@ def is_even(number):
         if "error" in r.json():
             raise Exception(r.json()["error"])
         else:
-            return ISEVEN_APIresponse(r.json()["iseven"], r.json()["ad"])
+            return IsEven(r.json()["iseven"], r.json()["ad"])
     except (RequestException, ConnectTimeout):
-        return ISEVEN_APIresponse(_is_even(n), "Python Software Foundation rocks!")
+        return IsEven(_is_even(n), "Python Software Foundation rocks!")
 
 
 def is_odd(number):

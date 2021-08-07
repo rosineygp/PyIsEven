@@ -3,7 +3,7 @@ from functools import lru_cache
 from retry import retry
 from typing import Union
 from requests.exceptions import RequestException, ConnectTimeout
-from ._py3_api_response import ISEVEN_APIresponse
+from ._py3_api_response import IsEven
 
 
 @lru_cache(maxsize=None)
@@ -17,9 +17,9 @@ def is_even(number: Union[str, int]) -> bool:
         if "error" in r.json():
             raise Exception(r.json()["error"])
         else:
-            return ISEVEN_APIresponse(r.json()["iseven"], r.json()["ad"])
+            return IsEven(r.json()["iseven"], r.json()["ad"])
     except (RequestException, ConnectTimeout):
-        return ISEVEN_APIresponse(_is_even(n), "Python Software foundation rocks!")
+        return IsEven(_is_even(n), "Python Software foundation rocks!")
 
 
 def is_odd(number: Union[str, int]) -> bool:

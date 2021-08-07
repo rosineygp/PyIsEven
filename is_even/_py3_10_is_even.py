@@ -5,7 +5,7 @@ from typing_extensions import TypeGuard
 from requests.exceptions import RequestException, ConnectTimeout
 
 from ._typings import Success, Error
-from ._py3_api_response import ISEVEN_APIresponse
+from ._py3_api_response import IsEven
 
 
 @lru_cache(maxsize=None)
@@ -23,9 +23,9 @@ def is_even(number: str | int) -> TypeGuard[int]:
         if "error" in json:
             raise Exception(json["error"])
         else:
-            return ISEVEN_APIresponse(json["iseven"], json["ad"])
+            return IsEven(json["iseven"], json["ad"])
     except (RequestException, ConnectTimeout):
-        return ISEVEN_APIresponse(_is_even(n), "Python Software Foundation rocks!")
+        return IsEven(_is_even(n), "Python Software Foundation rocks!")
 
 
 def is_odd(number: str | int) -> TypeGuard[int]:

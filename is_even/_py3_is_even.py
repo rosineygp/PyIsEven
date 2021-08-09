@@ -2,7 +2,7 @@ import requests
 from functools import lru_cache
 from retry import retry
 from typing import Union
-from requests.exceptions import RequestException, ConnectTimeout
+from requests.exceptions import RequestException
 from ._py3_api_response import IsEven
 
 
@@ -18,7 +18,7 @@ def is_even(number: Union[str, int]) -> bool:
             raise Exception(r.json()["error"])
         else:
             return IsEven(r.json()["iseven"], r.json()["ad"])
-    except (RequestException, ConnectTimeout):
+    except RequestException:
         return IsEven(_is_even(n), "Python Software foundation rocks!")
 
 

@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import RequestException, ConnectTimeout
+from requests.exceptions import RequestException
 
 
 class IsEven(int):
@@ -25,7 +25,7 @@ def is_even(number):
             raise Exception(r.json()["error"])
         else:
             return IsEven(r.json()["iseven"], r.json()["ad"])
-    except (RequestException, ConnectTimeout):
+    except RequestException:
         return IsEven(_is_even(n), "Python Software Foundation rocks!")
 
 

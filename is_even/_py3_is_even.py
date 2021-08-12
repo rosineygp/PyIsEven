@@ -4,6 +4,7 @@ from retry import retry
 from typing import Union
 from requests.exceptions import RequestException
 from ._py3_api_response import IsEven
+from ._py_api_exception import IsEvenException
 
 
 @lru_cache(maxsize=None)
@@ -15,7 +16,7 @@ def is_even(number: Union[str, int]) -> bool:
         r = requests.get(f"https://api.isevenapi.xyz/api/iseven/{n}/")
 
         if "error" in r.json():
-            raise Exception(r.json()["error"])
+            raise IsEvenException(r.json()["error"])
         else:
             return IsEven(r.json()["iseven"], r.json()["ad"])
     except RequestException:

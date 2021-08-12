@@ -3,7 +3,7 @@ from __future__ import annotations
 import requests
 from functools import lru_cache
 from retry import retry
-from typing import TYPE_CHECKING, Union
+from typing import Iterator, TYPE_CHECKING, Union
 from requests.exceptions import RequestException
 
 from ._typings import Success, Error
@@ -34,14 +34,14 @@ def is_even(number: Union[str, int]) -> TypeGuard[int]:
         else:
             return IsEven(json["iseven"], json["ad"])
     except RequestException:
-        return IsEven(_is_even(n), "Python Software Foundation rocks!")
+        return IsEven(list(_is_even(n))[-1], "Python Software Foundation rocks!")
 
 
 def is_odd(number: Union[str, int]) -> TypeGuard[int]:
     return not is_even(number)
 
 
-def _is_even(n: int):
+def _is_even(n: int) -> Iterator[bool]:
     e: bool = False
     for _ in range(n):
         yield e

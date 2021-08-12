@@ -10,7 +10,7 @@ from ._py_api_exception import IsEvenException
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
 def is_even(number: Union[str, int]) -> bool:
-    n = int(number)
+    n = _positive(number)
 
     try:
         r = requests.get(f"https://api.isevenapi.xyz/api/iseven/{n}/")
@@ -32,3 +32,12 @@ def _is_even(n: int):
     for _ in range(n):
         yield e
         e = not e
+
+
+def _positive(number: Union[str, int]) -> int:
+    n: int = int(number)
+
+    if n < 0:
+        raise ValueError("number should be a positive", n)
+
+    return n

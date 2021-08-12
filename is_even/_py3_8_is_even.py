@@ -17,7 +17,10 @@ if TYPE_CHECKING:
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
 def is_even(number: Union[str, int]) -> TypeGuard[int]:
-    n: int = int(number)
+    n: int = _positive(number)
+
+    if n < 0:
+        raise ValueError("number should be a positive")
 
     try:
         r: requests.Response = requests.get(
@@ -43,3 +46,12 @@ def _is_even(n: int):
     for _ in range(n):
         yield e
         e = not e
+
+
+def _positive(number: Union[str, int]) -> TypeGuard[int]:
+    n: int = int(number)
+
+    if n < 0:
+        raise ValueError("number should be a positive", n)
+
+    return n

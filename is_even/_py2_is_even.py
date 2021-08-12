@@ -14,10 +14,7 @@ class IsEven(int):
 
 
 def is_even(number):
-    n = int(number)
-
-    if n < 0:
-        raise Exception
+    n = _positive(number)
 
     try:
         r = requests.get("https://api.isevenapi.xyz/api/iseven/" + str(n) + "/")
@@ -39,3 +36,12 @@ def _is_even(n):
     for _ in range(n):
         e = not e
     return e
+
+
+def _positive(number):
+    n = int(number)
+
+    if n < 0:
+        raise ValueError("number should be a positive", n)
+
+    return n

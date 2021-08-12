@@ -6,6 +6,7 @@ from requests.exceptions import RequestException
 
 from ._typings import Success, Error
 from ._py3_api_response import IsEven
+from ._py_api_exception import IsEvenException
 
 
 @lru_cache(maxsize=None)
@@ -21,7 +22,7 @@ def is_even(number: str | int) -> TypeGuard[int]:
         json: Success | Error = r.json()
 
         if "error" in json:
-            raise Exception(json["error"])
+            raise IsEvenException(json["error"])
         else:
             return IsEven(json["iseven"], json["ad"])
     except RequestException:

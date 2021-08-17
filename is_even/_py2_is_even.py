@@ -7,7 +7,7 @@ class IsEven(int):
     def __new__(cls, value, ad):
         cls.ad = ad
         cls.value = value
-        return int.__new__(cls, bool(value))
+        return bool(value)
 
     def __repr__(self):
         return str(bool(self.value))

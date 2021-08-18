@@ -45,6 +45,17 @@ class TestIsEven(unittest.TestCase):
             odd = is_even._is_even(v)
         self.assertFalse(odd)
 
+    def test_ad(self):
+        if version_info >= (3, 0):
+            v = is_even.is_even(0)
+            self.assertTrue(isinstance(v.ad, str))
+
+    def test_ad_cached(self):
+        v = is_even.is_even(0)
+        y = is_even.is_even(0)
+        if version_info >= (3, 0):
+            self.assertEqual(v.ad, y.ad)
+
 
 if __name__ == "__main__":
     unittest.main()

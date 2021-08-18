@@ -1,8 +1,10 @@
-class IsEven(int):
-    def __new__(cls, value: int, ad: str) -> bool:
-        cls.ad = ad
-        cls.value = value
-        return bool(value)
+class IsEven:
+    def __init__(self, value: int, ad: str) -> bool:
+        self.ad = ad
+        self.value = value
 
     def __repr__(self) -> str:
-        return str(bool(self.value))
+        return str(self.value)
+
+    def __bool__(self):
+        return self.value

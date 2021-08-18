@@ -3,14 +3,16 @@ from requests.exceptions import RequestException
 from ._py_api_exception import IsEvenException
 
 
-class IsEven(int):
-    def __new__(cls, value, ad):
-        cls.ad = ad
-        cls.value = value
-        return bool(value)
+class IsEven:
+    def __init__(self, value, ad):
+        self.ad = ad
+        self.value = value
 
     def __repr__(self):
-        return str(bool(self.value))
+        return str(self.value)
+
+    def __nonzero__(self):
+        return self.value
 
 
 def is_even(number):

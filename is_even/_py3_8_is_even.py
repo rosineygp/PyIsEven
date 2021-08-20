@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
-def is_even(number: Union[str, int]) -> TypeGuard[int]:
+def is_even(number: Union[str, int]) -> TypeGuard[IsEven]:
     n: int = _positive(number)
 
     if n < 0:

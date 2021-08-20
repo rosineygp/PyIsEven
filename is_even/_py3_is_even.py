@@ -9,7 +9,7 @@ from ._py_api_exception import IsEvenException
 
 @lru_cache(maxsize=None)
 @retry(ConnectionError, tries=3, delay=2)
-def is_even(number: Union[str, int]) -> bool:
+def is_even(number: Union[str, int]) -> IsEven:
     n: int = _positive(number)
 
     try:

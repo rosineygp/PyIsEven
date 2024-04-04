@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   analysis:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ['3.8']
@@ -26,12 +26,12 @@ jobs:
       run: |
         black --check .
   e2e:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs:
       - analysis
     strategy:
       matrix:
-        python-version: ['2.x', '3.6', '3.7', '3.8', '3.9', '3.10.0-beta.4']
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
